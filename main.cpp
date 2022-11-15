@@ -31,7 +31,7 @@ int calculator(const char *s){
                 numbers.pop();
                 int numb1 = numbers.peek();
                 numbers.pop();
-                char op = operations.peek2();
+                char op = operations.peek();
                 operations.pop();
                 numbers.push(perform(numb2, numb1, op));
             }
@@ -40,12 +40,12 @@ int calculator(const char *s){
             }
         }
         else {
-            while (!operations.empty() && precedence(operations.peek2()) >= precedence(s[i])) {
+            while (!operations.empty() && precedence(operations.peek()) >= precedence(s[i])) {
                 int numb2 = numbers.peek();
                 numbers.pop();
                 int numb1 = numbers.peek();
                 numbers.pop();
-                char op = operations.peek2();
+                char op = operations.peek();
                 operations.pop();
                 numbers.push(perform(numb1, numb2, op));
             }
@@ -60,7 +60,7 @@ int calculatorr(const char *s){
     Stack numbers;
     Stack operations;
     int j=0;
-    while(s[j]!='\0'){
+    while(s[j]!='\0' && s[j]!='\n'){
         j++;}
     for(int i=0;i<j;i++){
         if (s[i]==' ')
@@ -83,7 +83,7 @@ int calculatorr(const char *s){
                 numbers.pop();
                 int numb1 = numbers.peek();
                 numbers.pop();
-                char op = operations.peek2();
+                char op = operations.peek();
                 operations.pop();
                 numbers.push(perform(numb1, numb2, op));
             }
@@ -147,7 +147,6 @@ int main(int argc, char ** argv){
             char a[1000]={0};
             char token;
             int i=0;
-           std::cout<<std::endl;
             while(std::cin.get(token)) {
                 if (token == '\n') {
                     break;
@@ -155,7 +154,12 @@ int main(int argc, char ** argv){
                 a[i] = token;
                 i++;
             }
-            std::cout<<calculator(a);
+            if(reverse){
+                std::cout<<calculatorr(a);
+            }
+            else{
+                std::cout<<calculator(a);
+            }
 
             }
         }
