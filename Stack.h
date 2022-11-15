@@ -5,7 +5,6 @@
 #ifndef MAIN_CPP_STACK_H
 #define MAIN_CPP_STACK_H
 
-#include <cstdlib>
 #define SIZE 100
 
 class Stack {
@@ -20,71 +19,10 @@ public:
     void push(int);
     int pop();
     int peek();
+    int peek2();
 
     int size();
     bool empty();
     bool isFull();
-
-    void push(char x);
-
-    char peek2();
 };
-Stack::Stack(int size) {
-    arr = new int[size];
-    capacity = size;
-    top = -1;
-}
-
-Stack::~Stack() {
-    delete[] arr;
-}
-
-void Stack::push(int x) {
-    if (isFull()) {
-        exit(EXIT_FAILURE);
-    }
-    arr[++top] = x;
-}
-void Stack::push(char x) {
-    if (isFull()) {
-        exit(EXIT_FAILURE);
-    }
-    arr[++top] = x;
-}
-int Stack::pop() {
-    if (empty())  {
-        exit(EXIT_FAILURE);
-    }
-    return arr[top--];
-}
-
-int Stack::peek() {
-    if (!empty()) {
-        return arr[top];
-    }
-    else {
-        exit(EXIT_FAILURE);
-    }
-}
-char Stack::peek2() {
-    if (!empty()) {
-        return arr[top];
-    }
-    else {
-        exit(EXIT_FAILURE);
-    }
-}
-
-int Stack::size() {
-    return top + 1;
-}
-
-bool Stack::empty() {
-    return top == -1;
-}
-
-bool Stack::isFull() {
-    return top == capacity - 1;
-}
-
 #endif //MAIN_CPP_STACK_H

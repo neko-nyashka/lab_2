@@ -130,23 +130,37 @@ int main(int argc, char ** argv){
             return EXIT_FAILURE;
         }
         if (file && reverse){
-            std::ifstream fin(name);
-            fin.getline(s, 1000);
-            fin.close();
-            std::cout<<s<<" ="<<std::endl;
+            std::ifstream f(name);
+            f.getline(s, 1000);
+            f.close();
+            std::cout<<s<<std::endl;
             std::cout<<calculatorr(s);
         }
         else if (file){
-            std::ifstream fin(name);
-            fin.getline(s, 1000);
-            fin.close();
-            std::cout<<s<<" ="<<std::endl;
+            std::ifstream f(name);
+            f.getline(s, 1000);
+            f.close();
+            std::cout<<s<<std::endl;
             std::cout<<calculator(s);
             }
+        else if(forward){
+            char a[1000]={0};
+            char token;
+            int i=0;
+           std::cout<<std::endl;
+            while(std::cin.get(token)) {
+                if (token == '\n') {
+                    break;
+                }
+                a[i] = token;
+                i++;
+            }
+            std::cout<<calculator(a);
+
+            }
+        }
 
 
-
-    }
     return 0;
     }
 
