@@ -18,9 +18,7 @@ public:
     bool empty();
     bool isFull();
 
-    void push(char x);
 
-    char peek2();
 };
 Stack::Stack(int size) {
     arr = new int[size];
@@ -38,12 +36,6 @@ void Stack::push(int x) {
     }
     arr[++top] = x;
 }
-void Stack::push(char x) {
-    if (isFull()) {
-        exit(EXIT_FAILURE);
-    }
-    arr[++top] = x;
-}
 int Stack::pop() {
     if (empty())  {
         exit(EXIT_FAILURE);
@@ -52,14 +44,6 @@ int Stack::pop() {
 }
 
 int Stack::peek() {
-    if (!empty()) {
-        return arr[top];
-    }
-    else {
-        exit(EXIT_FAILURE);
-    }
-}
-char Stack::peek2() {
     if (!empty()) {
         return arr[top];
     }

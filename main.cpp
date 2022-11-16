@@ -1,4 +1,4 @@
-#include <iostream>
+#include  <iostream>
 #include <cstring>
 #include <fstream>
 #include "calculate.h"
@@ -7,6 +7,7 @@ int calculator(const char *s){
     Stack numbers;
     Stack operations;
     int j=0;
+
     while(s[j]!='\0'){
         j++;}
     for(int i=0;i<=j;i++){
@@ -14,6 +15,9 @@ int calculator(const char *s){
             continue;
         else if (s[i] == '(')
             operations.push(s[i]);
+            if(s[i+1]=='-'){
+                numbers.push(0);
+            }
 
         else if (isdigit(s[i])) {
             int numb = 0;
@@ -40,6 +44,10 @@ int calculator(const char *s){
             }
         }
         else {
+             if(s[i]=='-' && i==0){
+                numbers.push(0);
+            }
+
             while (!operations.empty() && precedence(operations.peek()) >= precedence(s[i])) {
                 int numb2 = numbers.peek();
                 numbers.pop();
@@ -134,14 +142,14 @@ int main(int argc, char ** argv){
             f.getline(s, 1000);
             f.close();
             std::cout<<s<<std::endl;
-            std::cout<<calculatorr(s);
+            std::cout<<calculatorr(s) << '\n';
         }
         else if (file){
             std::ifstream f(name);
             f.getline(s, 1000);
             f.close();
             std::cout<<s<<std::endl;
-            std::cout<<calculator(s);
+            std::cout<<calculator(s) << '\n';
             }
         else if(forward){
             char a[1000]={0};
@@ -155,10 +163,10 @@ int main(int argc, char ** argv){
                 i++;
             }
             if(reverse){
-                std::cout<<calculatorr(a);
+                std::cout<<calculatorr(a) << '\n';
             }
             else{
-                std::cout<<calculator(a);
+                std::cout<<calculator(a) << '\n';
             }
 
             }
